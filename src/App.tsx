@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import SetCounter from './components/setCounter/SetCounter';
+import CommonCounter from './components/commonCounter/CommonCounter';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const minInitialValue = localStorage.getItem('minValue') || '';
+    const maxInitialValue = localStorage.getItem('maxValue') || '';
+
+    let [count, setCount] = useState<number>(+minInitialValue);
+    let [minValue, setMinValue] = useState<number>(+minInitialValue);
+    let [maxValue, setMaxValue] = useState<number>(+maxInitialValue);
+    let [error, setError] = useState<string>('');
+    let [editMode, setEditMode] = useState<boolean>(false);
+
+    const checkError = () => {
+        if (minValue >= maxValue || minValue < 0 || maxValue < 0) {
+            setError('Incorrect value!');
+        } else {
+            setError('');
+        }
+    };
+
+    useEffect(() => {
+            if (editMode) {
+                checkError();
+            }
+        }
+    );
+
+    const countIncrementClick = () => {
+        setCount(count + 1);
+    };
+
+    const countResetClick = () => {
+        setCount(minValue);
+    };
+
+    const onSetClick = () => {
+        setCount(minValue);
+    };
+
+    return (
+        <div className="wrapper">
+            <SetCounter
+                countSetClick={onSetClick}
+                minValue={minValue}
+                setMinValue={setMinValue}
+                setMaxValue={setMaxValue}
+                maxValue={maxValue}
+                setEditMode={setEditMode}
+                error={error}
+            />
+            <CommonCounter
+                count={count}
+                minValue={minValue}
+                maxValue={maxValue}
+                countIncrementClick={countIncrementClick}
+                countResetClick={countResetClick}
+                error={error}
+                editMode={editMode}
+            />
+        </div>
+    );
 }
 
 export default App;
