@@ -9,8 +9,7 @@ type CommonCounterType = {
     countIncrementClick: () => void,
     countResetClick: () => void
     error: string
-    editMode:boolean
-
+    editMode: boolean
 }
 
 const CommonCounter: React.FC<CommonCounterType> = (props) => {

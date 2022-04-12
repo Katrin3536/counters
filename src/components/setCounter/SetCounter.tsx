@@ -6,17 +6,18 @@ type SetCounterType = {
     countSetClick: () => void,
     maxValue: number,
     minValue: number,
-    setMaxValue:(maxValue:number)=>void,
-    setMinValue:(minValue:number)=>void,
-    setEditMode:(editMode:boolean)=>void,
-    error:string
+    setMaxValue: (maxValue: number) => void,
+    setMinValue: (minValue: number) => void,
+    setEditMode: (editMode: boolean) => void,
+    error: string
 }
 
 const SetCounter: React.FC<SetCounterType> = (props) => {
-const onSetClickHandler = () => {
-    props.setEditMode(false)
-    props.countSetClick()
-}
+    const onSetClickHandler = () => {
+        props.setEditMode(false);
+        props.countSetClick();
+    };
+
     return (
         <div className={'setMain'}>
             <SetScoreBoard
@@ -31,7 +32,7 @@ const onSetClickHandler = () => {
                 <Button
                     name={'Set'}
                     onClickHandler={onSetClickHandler}
-                    disabled={props.maxValue<0 || props.minValue<0 || props.maxValue === props.minValue}/>
+                    disabled={props.maxValue < 0 || props.minValue < 0 || props.maxValue === props.minValue}/>
             </div>
         </div>
     );

@@ -6,10 +6,9 @@ type SetScoreBoardType = {
     minValue: number,
     setMaxValue: (maxValue: number) => void,
     setMinValue: (minValue: number) => void,
-    setEditMode:(editMode:boolean)=>void,
+    setEditMode: (editMode: boolean) => void,
     error: string
 }
-
 
 const SetScoreBoard: React.FC<SetScoreBoardType> = (props) => {
     const setNewMinValue = (minValue: number) => {
