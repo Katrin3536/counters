@@ -5,7 +5,6 @@ import CommonCounter from './components/commonCounter/CommonCounter';
 
 
 function App() {
-
     const minInitialValue = localStorage.getItem('minValue') || '';
     const maxInitialValue = localStorage.getItem('maxValue') || '';
 

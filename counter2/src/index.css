@@ -10,7 +10,7 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #4e5257;
+    background-image: url("stars-space-sky-night.jpg");
     height: 100%;
 }
 #root {
