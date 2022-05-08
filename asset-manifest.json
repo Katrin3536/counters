@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/counters/static/css/main.4c0d8336.css",
-    "main.js": "/counters/static/js/main.c7f9edad.js",
+    "main.css": "/counters/static/css/main.1919af9e.css",
+    "main.js": "/counters/static/js/main.8c5a832d.js",
     "static/js/787.e458d2a5.chunk.js": "/counters/static/js/787.e458d2a5.chunk.js",
-    "static/media/stars-space-sky-night.jpg": "/counters/static/media/stars-space-sky-night.a849779f4bb6bb57d1a9.jpg",
+    "static/media/kameliya.jpg": "/counters/static/media/kameliya.b1c48be3f502c87ee669.jpg",
     "index.html": "/counters/index.html",
-    "main.4c0d8336.css.map": "/counters/static/css/main.4c0d8336.css.map",
-    "main.c7f9edad.js.map": "/counters/static/js/main.c7f9edad.js.map",
+    "main.1919af9e.css.map": "/counters/static/css/main.1919af9e.css.map",
+    "main.8c5a832d.js.map": "/counters/static/js/main.8c5a832d.js.map",
     "787.e458d2a5.chunk.js.map": "/counters/static/js/787.e458d2a5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c0d8336.css",
-    "static/js/main.c7f9edad.js"
+    "static/css/main.1919af9e.css",
+    "static/js/main.8c5a832d.js"
   ]
 }
