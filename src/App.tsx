@@ -1,66 +1,65 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import SetCounter from './components/setCounter/SetCounter';
 import CommonCounter from './components/commonCounter/CommonCounter';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {AppStateType} from './bll/store';
+import {InitialStateType, setCountAC, setErrorAC} from './bll/counter-reducer';
 
 function App() {
-
-    const minInitialValue = localStorage.getItem('minValue') || '';
-    const maxInitialValue = localStorage.getItem('maxValue') || '';
-
-    let [count, setCount] = useState<number>(+minInitialValue);
-    let [minValue, setMinValue] = useState<number>(+minInitialValue);
-    let [maxValue, setMaxValue] = useState<number>(+maxInitialValue);
-    let [error, setError] = useState<string>('');
-    let [editMode, setEditMode] = useState<boolean>(false);
+    let count = useSelector<AppStateType, InitialStateType>(state => state.count);
+    let minValue = useSelector<AppStateType, InitialStateType>(state => state.minValue);
+    let maxValue = useSelector<AppStateType, InitialStateType>(state => state.maxValue);
+    let error = useSelector<AppStateType, InitialStateType>(state => state.error);
+    let editMode = useSelector<AppStateType, InitialStateType>(state => state.editMode);
+    let dispatch = useDispatch();
 
     const checkError = () => {
-        if (minValue >= maxValue || minValue < 0 || maxValue < 0) {
-            setError('Incorrect value!');
+        if (minValue.minValue >= maxValue.maxValue || minValue.minValue < 0 || maxValue.maxValue < 0) {
+            dispatch(setErrorAC('Incorrect value!'));
         } else {
-            setError('');
+            dispatch(setErrorAC(''));
         }
     };
 
     useEffect(() => {
-            if (editMode) {
+            if (editMode.editMode) {
                 checkError();
             }
         }
     );
 
     const countIncrementClick = () => {
-        setCount(count + 1);
+        dispatch(setCountAC(count.count + 1));
     };
 
     const countResetClick = () => {
-        setCount(minValue);
+        dispatch(setCountAC(minValue.minValue));
     };
 
     const onSetClick = () => {
-        setCount(minValue);
+        dispatch(setCountAC(minValue.minValue));
     };
 
     return (
         <div className="wrapper">
             <SetCounter
+                setMinValue={dispatch}
                 countSetClick={onSetClick}
-                minValue={minValue}
-                setMinValue={setMinValue}
-                setMaxValue={setMaxValue}
-                maxValue={maxValue}
-                setEditMode={setEditMode}
-                error={error}
+                minValue={minValue.minValue}
+                setMaxValue={dispatch}
+                maxValue={maxValue.maxValue}
+                setEditMode={dispatch}
+                error={error.error}
             />
             <CommonCounter
-                count={count}
-                minValue={minValue}
-                maxValue={maxValue}
+                count={count.count}
+                minValue={minValue.minValue}
+                maxValue={maxValue.maxValue}
                 countIncrementClick={countIncrementClick}
                 countResetClick={countResetClick}
-                error={error}
-                editMode={editMode}
+                error={error.error}
+                editMode={editMode.editMode}
             />
         </div>
     );

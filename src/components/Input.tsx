@@ -11,8 +11,10 @@ type InputType = {
 const Input: React.FC<InputType> = (props) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+
         const newValue = Number(e.currentTarget.value);
         props.setNewValue(newValue);
+        console.log('newValue', newValue);
         localStorage.setItem(props.fieldName, JSON.stringify(newValue));
     };
 

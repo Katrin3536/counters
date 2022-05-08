@@ -1,20 +1,21 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
+import {ActionType, setEditModeAC} from '../../bll/counter-reducer';
 import Button from '../Button';
 import SetScoreBoard from './SetScoreBoard';
 
 type SetCounterType = {
     countSetClick: () => void,
+    setMinValue: Dispatch<ActionType>,
     maxValue: number,
     minValue: number,
-    setMaxValue: (maxValue: number) => void,
-    setMinValue: (minValue: number) => void,
-    setEditMode: (editMode: boolean) => void,
+    setMaxValue: Dispatch<ActionType>,
+    setEditMode: Dispatch<ActionType>,
     error: string
 }
 
 const SetCounter: React.FC<SetCounterType> = (props) => {
     const onSetClickHandler = () => {
-        props.setEditMode(false);
+        props.setEditMode(setEditModeAC(false));
         props.countSetClick();
     };
 
@@ -22,8 +23,8 @@ const SetCounter: React.FC<SetCounterType> = (props) => {
         <div className={'setMain'}>
             <SetScoreBoard
                 minValue={props.minValue}
-                setMinValue={props.setMinValue}
                 setMaxValue={props.setMaxValue}
+                setMinValue={props.setMinValue}
                 maxValue={props.maxValue}
                 setEditMode={props.setEditMode}
                 error={props.error}
